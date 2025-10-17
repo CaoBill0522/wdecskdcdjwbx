@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Security Alert - Fraud Detected</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a1a1a 0%, #000000 100%);
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 800px;
+            width: 100%;
+            background: rgba(30, 0, 0, 0.8);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 0 50px rgba(255, 0, 0, 0.3);
+            border: 2px solid #ff0000;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            animation: container-appear 1s ease-out;
+        }
+        
+        @keyframes container-appear {
+            0% {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        .warning-icon {
+            font-size: 120px;
+            color: #ff0000;
+            margin-bottom: 20px;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+            }
+            50% {
+                transform: scale(1.1);
+                text-shadow: 0 0 20px rgba(255, 0, 0, 0.8);
+            }
+            100% {
+                transform: scale(1);
+                text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+            }
+        }
+        
+        h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: #ff3333;
+            text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+            letter-spacing: 2px;
+            animation: text-flicker 3s infinite;
+        }
+        
+        @keyframes text-flicker {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.9;
+            }
+        }
+        
+        .subtitle {
+            font-size: 24px;
+            margin-bottom: 30px;
+            color: #ff6666;
+        }
+        
+        .message {
+            font-size: 20px;
+            line-height: 1.6;
+            margin-bottom: 40px;
+            background: rgba(255, 0, 0, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 5px solid #ff0000;
+        }
+        
+        .warning-box {
+            background: rgba(255, 0, 0, 0.2);
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            border: 1px solid #ff3333;
+            box-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
+        }
+        
+        .warning-title {
+            font-size: 28px;
+            margin-bottom: 15px;
+            color: #ff3333;
+        }
+        
+        .warning-list {
+            text-align: left;
+            font-size: 18px;
+            line-height: 1.8;
+            margin-left: 20px;
+        }
+        
+        .warning-list li {
+            margin-bottom: 10px;
+            position: relative;
+        }
+        
+        .warning-list li:before {
+            content: "⚠";
+            position: absolute;
+            left: -25px;
+            color: #ff3333;
+        }
+        
+        .footer {
+            margin-top: 30px;
+            font-size: 16px;
+            color: #999;
+        }
+        
+        .scan-line {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, transparent, #ff0000, transparent);
+            animation: scan 3s linear infinite;
+        }
+        
+        @keyframes scan {
+            0% {
+                top: 0;
+            }
+            100% {
+                top: 100%;
+            }
+        }
+        
+        .corner {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+        }
+        
+        .corner-tl {
+            top: 10px;
+            left: 10px;
+            border-top: 3px solid #ff0000;
+            border-left: 3px solid #ff0000;
+        }
+        
+        .corner-tr {
+            top: 10px;
+            right: 10px;
+            border-top: 3px solid #ff0000;
+            border-right: 3px solid #ff0000;
+        }
+        
+        .corner-bl {
+            bottom: 10px;
+            left: 10px;
+            border-bottom: 3px solid #ff0000;
+            border-left: 3px solid #ff0000;
+        }
+        
+        .corner-br {
+            bottom: 10px;
+            right: 10px;
+            border-bottom: 3px solid #ff0000;
+            border-right: 3px solid #ff0000;
+        }
+        
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 36px;
+            }
+            
+            .subtitle {
+                font-size: 20px;
+            }
+            
+            .message, .warning-box {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="scan-line"></div>
+        <div class="corner corner-tl"></div>
+        <div class="corner corner-tr"></div>
+        <div class="corner corner-bl"></div>
+        <div class="corner corner-br"></div>
+        
+        <div class="warning-icon">⚠</div>
+        
+        <h1>SECURITY ALERT</h1>
+        
+        <div class="subtitle">You have been scammed!</div>
+        
+        <div class="message">
+            This page is a simulation of a fraudulent website designed to educate users about online security threats.
+        </div>
+        
+        <div class="warning-box">
+            <div class="warning-title">Important Security Warning</div>
+            <ul class="warning-list">
+                <li>Do not click on links from unknown or suspicious sources</li>
+                <li>Never share personal or financial information with unverified websites</li>
+                <li>Verify the authenticity of websites before entering any sensitive data</li>
+                <li>Use strong, unique passwords for different online accounts</li>
+                <li>Enable two-factor authentication whenever possible</li>
+                <li>Keep your security software updated</li>
+            </ul>
+        </div>
+        
+        <div class="footer">
+            This is a security awareness demonstration. In a real scenario, you might have lost money or personal information.
+        </div>
+    </div>
+
+    <script>
+        // Add some interactive effects
+        document.addEventListener('DOMContentLoaded', function() {
+            const container = document.querySelector('.container');
+            
+            // Add click effect
+            container.addEventListener('click', function() {
+                this.style.transform = 'scale(0.98)';
+                setTimeout(() => {
+                    this.style.transform = 'scale(1)';
+                }, 200);
+            });
+            
+            // Add random flicker effect
+            setInterval(() => {
+                if (Math.random() > 0.7) {
+                    container.style.boxShadow = '0 0 60px rgba(255, 0, 0, 0.5)';
+                    setTimeout(() => {
+                        container.style.boxShadow = '0 0 50px rgba(255, 0, 0, 0.3)';
+                    }, 300);
+                }
+            }, 2000);
+        });
+    </script>
+</body>
+</html>
