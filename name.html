@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>随机分组工具</title>
+<style>
+    body { font-family: "Microsoft YaHei", sans-serif; padding: 30px; background: #f4f6fa; }
+    h1 { color: #333; }
+    textarea { width: 300px; height: 200px; }
+    button { padding: 10px 20px; margin-top: 10px; cursor: pointer; background: #4287f5; color: #fff; border: none; border-radius: 6px; }
+    button:hover { background: #2f6bd8; }
+    .result { margin-top: 20px; background: #fff; padding: 20px; border-radius: 8px; white-space: pre-wrap; }
+</style>
+</head>
+<body>
+
+<h1>随机分组工具</h1>
+
+<p>请输入名单（每行一人）：</p>
+<textarea id="names">Micheal
+James
+Jasmine
+Judy
+Xinpeng
+Siying
+Ziyu
+Yuzuki
+Ryo
+Nikita
+Takuya
+Katherine
+Fengran
+Xintong</textarea>
+
+<br><br>
+<label>每组人数：</label>
+<input type="number" id="groupSize" value="3" min="1" style="width:60px;">
+
+<br>
+<button onclick="generateGroups()">随机生成分组</button>
+
+<div class="result" id="result"></div>
+
+<script>
+function shuffle(arr) {
+    for(let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+}
+
+function generateGroups() {
+    let names = document.getElementById("names").value.split("\n").filter(n => n.trim() !== "");
+    let size = parseInt(document.getElementById("groupSize").value);
+    let shuffled = shuffle(names);
+
+    let resultText = "";
+    let groupNum = 1;
+
+    for (let i = 0; i < shuffled.length; i += size) {
+        resultText += `第 ${groupNum} 组：\n`;
+        resultText += shuffled.slice(i, i + size).join(", ") + "\n\n";
+        groupNum++;
+    }
+
+    document.getElementById("result").innerText = resultText;
+}
+</script>
+
+</body>
+</html>
